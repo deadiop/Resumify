@@ -98,39 +98,3 @@ function updatePreview() {
   setText(preview.phone, cleanValue("phone"));
   setText(preview.location, cleanValue("location"));
   setText(preview.website, cleanValue("website"));
-  setText(preview.summary, cleanValue("summary"));
-  setText(preview.initials, getInitials(fullName));
-  renderMultiline(preview.experience, cleanValue("experience"));
-  renderMultiline(preview.education, cleanValue("education"));
-  renderSkills();
-}
-
-Object.values(fields).forEach((field) => {
-  field.addEventListener("input", updatePreview);
-});
-
-document.querySelector("#profileImage").addEventListener("change", (event) => {
-  const [file] = event.target.files;
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.addEventListener("load", () => {
-    preview.photo.src = reader.result;
-    preview.avatar.classList.add("has-image");
-  });
-  reader.readAsDataURL(file);
-});
-
-document.querySelectorAll(".template-option").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".template-option").forEach((option) => option.classList.remove("active"));
-    button.classList.add("active");
-    preview.page.className = `resume-page template-${button.dataset.template}`;
-  });
-});
-
-document.querySelectorAll("#printResume, #printResumeAlt").forEach((button) => {
-  button.addEventListener("click", () => window.print());
-});
-
-updatePreview();
