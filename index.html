@@ -4,97 +4,180 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume Builder</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <div class="app-shell">
-      <aside class="editor-panel" aria-label="Resume editor">
+
+      <!-- LEFT PANEL -->
+      <aside class="editor-panel">
+
         <div class="brand-row">
           <div>
             <p class="eyebrow">Instant Resume Builder</p>
             <h1>Craft a polished resume.</h1>
           </div>
-          <button class="download-button editor-download" id="printResume" type="button" aria-label="Download PDF" title="Download PDF">
+
+          <button id="printResume" class="download-button">
             Download PDF
           </button>
         </div>
 
-        <section class="template-switcher" aria-label="Resume templates">
-          <button class="template-option active" type="button" data-template="classic">Classic</button>
-          <button class="template-option" type="button" data-template="modern">Modern</button>
-          <button class="template-option" type="button" data-template="compact">Compact</button>
+        <!-- TEMPLATE SWITCH -->
+        <section class="template-switcher">
+          <button class="template-option active" data-template="classic">
+            Classic
+          </button>
+
+          <button class="template-option" data-template="modern">
+            Modern
+          </button>
+
+          <button class="template-option" data-template="compact">
+            Compact
+          </button>
         </section>
 
+        <!-- FORM -->
         <form id="resumeForm" class="form-grid">
+
           <section class="field-group">
             <h2>Profile</h2>
+
             <label>
-              Full name
+              Full Name
               <input id="fullName" type="text" value="Avery Morgan" />
             </label>
+
             <label>
               Role
               <input id="role" type="text" value="Product Designer" />
             </label>
+
             <label>
               Email
-              <input id="email" type="email" value="avery.morgan@email.com" />
+              <input id="email" type="email" value="avery@email.com" />
             </label>
+
             <label>
               Phone
               <input id="phone" type="text" value="+1 555 0198" />
             </label>
+
             <label>
               Location
               <input id="location" type="text" value="New York, NY" />
             </label>
+
             <label>
               Website
               <input id="website" type="text" value="averymorgan.design" />
             </label>
+
             <label class="upload-field">
-              Profile image
+              Profile Image
               <input id="profileImage" type="file" accept="image/*" />
             </label>
           </section>
 
           <section class="field-group">
             <h2>Summary</h2>
-            <label>
-              Professional summary
-              <textarea id="summary" rows="5">Product designer with 6+ years of experience creating SaaS workflows, design systems, and research-led product improvements for fast-moving teams.</textarea>
-            </label>
+
+            <textarea id="summary" rows="5">
+Product designer with 6+ years of experience creating SaaS workflows, design systems, and research-led product improvements.
+            </textarea>
           </section>
 
           <section class="field-group">
             <h2>Experience</h2>
-            <label>
-              Current role
-              <textarea id="experience" rows="7">Lead Product Designer, Northstar Labs
+
+            <textarea id="experience" rows="7">
+Lead Product Designer — Northstar Labs
 2022 - Present
-- Redesigned onboarding, increasing activation by 28%.
-- Built a component library used by 14 product teams.
-- Partnered with PMs and engineers to ship analytics dashboards.</textarea>
-            </label>
+
+• Redesigned onboarding flow increasing activation by 28%
+• Built scalable design system
+• Worked closely with engineers and PMs
+            </textarea>
           </section>
 
           <section class="field-group">
             <h2>Education</h2>
-            <label>
-              Education
-              <textarea id="education" rows="4">BFA, Interaction Design
-Rhode Island School of Design, 2017</textarea>
-            </label>
+
+            <textarea id="education" rows="4">
+BFA, Interaction Design
+Rhode Island School of Design, 2017
+            </textarea>
           </section>
 
           <section class="field-group">
             <h2>Skills</h2>
-            <label>
-              Skills, comma separated
-              <textarea id="skills" rows="3">Product strategy, UX research, Figma, Prototyping, Design systems, Accessibility</textarea>
-            </label>
+
+            <textarea id="skills" rows="3">
+Figma, UX Research, Product Strategy, Accessibility, Wireframing
+            </textarea>
           </section>
+
         </form>
       </aside>
 
+      <!-- RIGHT PANEL -->
       <main class="preview-panel">
+
+        <section class="resume-preview classic" id="resumePreview">
+
+          <div class="top-section">
+
+            <div class="avatar-frame">
+              <span id="avatarInitials">AM</span>
+
+              <img
+                id="previewPhoto"
+                alt="Profile Photo"
+              />
+            </div>
+
+            <div>
+              <h1 id="previewName">Avery Morgan</h1>
+              <h2 id="previewRole">Product Designer</h2>
+
+              <div class="contact-grid">
+                <p id="previewEmail"></p>
+                <p id="previewPhone"></p>
+                <p id="previewLocation"></p>
+                <p id="previewWebsite"></p>
+              </div>
+            </div>
+
+          </div>
+
+          <section class="resume-section">
+            <h3>Summary</h3>
+            <div id="previewSummary"></div>
+          </section>
+
+          <section class="resume-section">
+            <h3>Experience</h3>
+            <div id="previewExperience"></div>
+          </section>
+
+          <section class="resume-section">
+            <h3>Education</h3>
+            <div id="previewEducation"></div>
+          </section>
+
+          <section class="resume-section">
+            <h3>Skills</h3>
+            <div id="previewSkills"></div>
+          </section>
+
+        </section>
+
+      </main>
+
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
