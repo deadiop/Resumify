@@ -25,7 +25,6 @@ const preview = {
   skills: document.querySelector("#previewSkills"),
   initials: document.querySelector("#avatarInitials"),
   photo: document.querySelector("#previewPhoto"),
-  avatar: document.querySelector(".avatar-frame"),
   page: document.querySelector("#resumePreview"),
 };
 
@@ -70,6 +69,7 @@ function renderSkills() {
 }
 
 function updatePreview() {
+
   setText(preview.name, fields.fullName.value);
   setText(preview.role, fields.role.value);
   setText(preview.email, fields.email.value);
@@ -86,15 +86,20 @@ function updatePreview() {
   renderSkills();
 }
 
+/* LIVE UPDATE */
+
 Object.values(fields).forEach(field => {
+
   if (field.type !== "file") {
     field.addEventListener("input", updatePreview);
   }
+
 });
 
-/* IMAGE UPLOAD */
+/* PROFILE IMAGE */
 
 fields.profileImage.addEventListener("change", event => {
+
   const file = event.target.files[0];
 
   if (!file) return;
@@ -102,12 +107,16 @@ fields.profileImage.addEventListener("change", event => {
   const reader = new FileReader();
 
   reader.onload = e => {
+
     preview.photo.src = e.target.result;
     preview.photo.style.display = "block";
+
     preview.initials.style.display = "none";
+
   };
 
   reader.readAsDataURL(file);
+
 });
 
 /* TEMPLATE SWITCH */
@@ -115,6 +124,7 @@ fields.profileImage.addEventListener("change", event => {
 const templateButtons = document.querySelectorAll(".template-option");
 
 templateButtons.forEach(button => {
+
   button.addEventListener("click", () => {
 
     templateButtons.forEach(btn => {
@@ -126,7 +136,9 @@ templateButtons.forEach(button => {
     const template = button.dataset.template;
 
     preview.page.className = `resume-preview ${template}`;
+
   });
+
 });
 
 /* DOWNLOAD PDF */
@@ -134,7 +146,34 @@ templateButtons.forEach(button => {
 document
   .querySelector("#printResume")
   .addEventListener("click", () => {
-    window.print();
+
+    const resume = document.querySelector("#resumePreview");
+
+    const options = {
+      margin: 0.5,
+      filename: "resume.pdf",
+
+      image: {
+        type: "jpeg",
+        quality: 1
+      },
+
+      html2canvas: {
+        scale: 2
+      },
+
+      jsPDF: {
+        unit: "in",
+        format: "letter",
+        orientation: "portrait"
+      }
+    };
+
+    html2pdf()
+      .set(options)
+      .from(resume)
+      .save();
+
   });
 
 updatePreview();
