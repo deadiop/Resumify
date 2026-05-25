@@ -9,6 +9,7 @@ const fields = {
   experience: document.querySelector("#experience"),
   education: document.querySelector("#education"),
   skills: document.querySelector("#skills"),
+  profileImage: document.querySelector("#profileImage"),
 };
 
 const preview = {
@@ -24,77 +25,116 @@ const preview = {
   skills: document.querySelector("#previewSkills"),
   initials: document.querySelector("#avatarInitials"),
   photo: document.querySelector("#previewPhoto"),
-  page: document.querySelector("#resumePreview"),
   avatar: document.querySelector(".avatar-frame"),
+  page: document.querySelector("#resumePreview"),
 };
-
-const fallback = {
-  fullName: "Your Name",
-  role: "Target Role",
-  email: "email@example.com",
-  phone: "+1 555 0000",
-  location: "City, Country",
-  website: "portfolio.com",
-  summary: "Write a focused summary that highlights your impact, strengths, and the role you want next.",
-};
-
-function cleanValue(fieldName) {
-  return fields[fieldName].value.trim() || fallback[fieldName] || "";
-}
 
 function setText(element, value) {
   element.textContent = value;
 }
 
+function getInitials(name) {
+  return name
+    .split(" ")
+    .map(word => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 function renderMultiline(element, value) {
-  element.replaceChildren();
-  const lines = value
+  element.innerHTML = "";
+
+  value
     .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  if (!lines.length) {
-    const empty = document.createElement("p");
-    empty.textContent = "Add details here.";
-    element.append(empty);
-    return;
-  }
-
-  lines.forEach((line) => {
-    const paragraph = document.createElement("p");
-    paragraph.textContent = line;
-    element.append(paragraph);
-  });
+    .filter(line => line.trim() !== "")
+    .forEach(line => {
+      const p = document.createElement("p");
+      p.textContent = line;
+      element.appendChild(p);
+    });
 }
 
 function renderSkills() {
-  preview.skills.replaceChildren();
-  const skills = cleanValue("skills")
+  preview.skills.innerHTML = "";
+
+  fields.skills.value
     .split(",")
-    .map((skill) => skill.trim())
-    .filter(Boolean);
-
-  skills.forEach((skill) => {
-    const tag = document.createElement("span");
-    tag.textContent = skill;
-    preview.skills.append(tag);
-  });
-}
-
-function getInitials(name) {
-  const words = name.split(/\s+/).filter(Boolean);
-  return words
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase() || "YN";
+    .map(skill => skill.trim())
+    .filter(Boolean)
+    .forEach(skill => {
+      const tag = document.createElement("span");
+      tag.textContent = skill;
+      preview.skills.appendChild(tag);
+    });
 }
 
 function updatePreview() {
-  const fullName = cleanValue("fullName");
-  setText(preview.name, fullName);
-  setText(preview.role, cleanValue("role"));
-  setText(preview.email, cleanValue("email"));
-  setText(preview.phone, cleanValue("phone"));
-  setText(preview.location, cleanValue("location"));
-  setText(preview.website, cleanValue("website"));
+  setText(preview.name, fields.fullName.value);
+  setText(preview.role, fields.role.value);
+  setText(preview.email, fields.email.value);
+  setText(preview.phone, fields.phone.value);
+  setText(preview.location, fields.location.value);
+  setText(preview.website, fields.website.value);
+
+  preview.initials.textContent = getInitials(fields.fullName.value);
+
+  renderMultiline(preview.summary, fields.summary.value);
+  renderMultiline(preview.experience, fields.experience.value);
+  renderMultiline(preview.education, fields.education.value);
+
+  renderSkills();
+}
+
+Object.values(fields).forEach(field => {
+  if (field.type !== "file") {
+    field.addEventListener("input", updatePreview);
+  }
+});
+
+/* IMAGE UPLOAD */
+
+fields.profileImage.addEventListener("change", event => {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = e => {
+    preview.photo.src = e.target.result;
+    preview.photo.style.display = "block";
+    preview.initials.style.display = "none";
+  };
+
+  reader.readAsDataURL(file);
+});
+
+/* TEMPLATE SWITCH */
+
+const templateButtons = document.querySelectorAll(".template-option");
+
+templateButtons.forEach(button => {
+  button.addEventListener("click", () => {
+
+    templateButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const template = button.dataset.template;
+
+    preview.page.className = `resume-preview ${template}`;
+  });
+});
+
+/* DOWNLOAD PDF */
+
+document
+  .querySelector("#printResume")
+  .addEventListener("click", () => {
+    window.print();
+  });
+
+updatePreview();
