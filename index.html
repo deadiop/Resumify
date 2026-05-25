@@ -1,183 +1,290 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume Builder</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Builder</title>
 
-  <body>
-    <div class="app-shell">
+  <!-- CSS FILE -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-      <!-- LEFT PANEL -->
-      <aside class="editor-panel">
+<body>
 
-        <div class="brand-row">
-          <div>
-            <p class="eyebrow">Instant Resume Builder</p>
-            <h1>Craft a polished resume.</h1>
-          </div>
+  <div class="app-shell">
 
-          <button id="printResume" class="download-button">
-            Download PDF
-          </button>
+    <!-- LEFT SIDE EDITOR -->
+    <aside class="editor-panel">
+
+      <div class="brand-row">
+        <div>
+          <p class="eyebrow">Instant Resume Builder</p>
+          <h1>Craft a polished resume.</h1>
         </div>
 
-        <!-- TEMPLATE SWITCH -->
-        <section class="template-switcher">
-          <button class="template-option active" data-template="classic">
-            Classic
-          </button>
+        <button
+          id="printResume"
+          class="download-button"
+          type="button"
+        >
+          Download PDF
+        </button>
+      </div>
 
-          <button class="template-option" data-template="modern">
-            Modern
-          </button>
+      <!-- TEMPLATE SWITCHER -->
+      <section class="template-switcher">
 
-          <button class="template-option" data-template="compact">
-            Compact
-          </button>
+        <button
+          type="button"
+          class="template-option active"
+          data-template="classic"
+        >
+          Classic
+        </button>
+
+        <button
+          type="button"
+          class="template-option"
+          data-template="modern"
+        >
+          Modern
+        </button>
+
+        <button
+          type="button"
+          class="template-option"
+          data-template="compact"
+        >
+          Compact
+        </button>
+
+      </section>
+
+      <!-- FORM -->
+      <form id="resumeForm" class="form-grid">
+
+        <!-- PROFILE -->
+        <section class="field-group">
+
+          <h2>Profile</h2>
+
+          <label>
+            Full Name
+            <input
+              id="fullName"
+              type="text"
+              value="Avery Morgan"
+            />
+          </label>
+
+          <label>
+            Role
+            <input
+              id="role"
+              type="text"
+              value="Product Designer"
+            />
+          </label>
+
+          <label>
+            Email
+            <input
+              id="email"
+              type="email"
+              value="avery@email.com"
+            />
+          </label>
+
+          <label>
+            Phone
+            <input
+              id="phone"
+              type="text"
+              value="+1 555 0198"
+            />
+          </label>
+
+          <label>
+            Location
+            <input
+              id="location"
+              type="text"
+              value="New York, NY"
+            />
+          </label>
+
+          <label>
+            Website
+            <input
+              id="website"
+              type="text"
+              value="averymorgan.design"
+            />
+          </label>
+
+          <label class="upload-field">
+            Profile Image
+            <input
+              id="profileImage"
+              type="file"
+              accept="image/*"
+            />
+          </label>
+
         </section>
 
-        <!-- FORM -->
-        <form id="resumeForm" class="form-grid">
+        <!-- SUMMARY -->
+        <section class="field-group">
 
-          <section class="field-group">
-            <h2>Profile</h2>
+          <h2>Summary</h2>
 
-            <label>
-              Full Name
-              <input id="fullName" type="text" value="Avery Morgan" />
-            </label>
+          <textarea
+            id="summary"
+            rows="5"
+          >Product designer with 6+ years of experience creating SaaS workflows, design systems, and research-led product improvements.</textarea>
 
-            <label>
-              Role
-              <input id="role" type="text" value="Product Designer" />
-            </label>
+        </section>
 
-            <label>
-              Email
-              <input id="email" type="email" value="avery@email.com" />
-            </label>
+        <!-- EXPERIENCE -->
+        <section class="field-group">
 
-            <label>
-              Phone
-              <input id="phone" type="text" value="+1 555 0198" />
-            </label>
+          <h2>Experience</h2>
 
-            <label>
-              Location
-              <input id="location" type="text" value="New York, NY" />
-            </label>
-
-            <label>
-              Website
-              <input id="website" type="text" value="averymorgan.design" />
-            </label>
-
-            <label class="upload-field">
-              Profile Image
-              <input id="profileImage" type="file" accept="image/*" />
-            </label>
-          </section>
-
-          <section class="field-group">
-            <h2>Summary</h2>
-
-            <textarea id="summary" rows="5">
-Product designer with 6+ years of experience creating SaaS workflows, design systems, and research-led product improvements.
-            </textarea>
-          </section>
-
-          <section class="field-group">
-            <h2>Experience</h2>
-
-            <textarea id="experience" rows="7">
-Lead Product Designer — Northstar Labs
+          <textarea
+            id="experience"
+            rows="8"
+          >Lead Product Designer — Northstar Labs
 2022 - Present
 
 • Redesigned onboarding flow increasing activation by 28%
 • Built scalable design system
-• Worked closely with engineers and PMs
-            </textarea>
-          </section>
+• Worked closely with engineers and PMs</textarea>
 
-          <section class="field-group">
-            <h2>Education</h2>
+        </section>
 
-            <textarea id="education" rows="4">
-BFA, Interaction Design
-Rhode Island School of Design, 2017
-            </textarea>
-          </section>
+        <!-- EDUCATION -->
+        <section class="field-group">
 
-          <section class="field-group">
-            <h2>Skills</h2>
+          <h2>Education</h2>
 
-            <textarea id="skills" rows="3">
-Figma, UX Research, Product Strategy, Accessibility, Wireframing
-            </textarea>
-          </section>
+          <textarea
+            id="education"
+            rows="4"
+          >BFA, Interaction Design
+Rhode Island School of Design, 2017</textarea>
 
-        </form>
-      </aside>
+        </section>
 
-      <!-- RIGHT PANEL -->
-      <main class="preview-panel">
+        <!-- SKILLS -->
+        <section class="field-group">
 
-        <section class="resume-preview classic" id="resumePreview">
+          <h2>Skills</h2>
 
-          <div class="top-section">
+          <textarea
+            id="skills"
+            rows="3"
+          >Figma, UX Research, Product Strategy, Accessibility, Wireframing</textarea>
 
-            <div class="avatar-frame">
-              <span id="avatarInitials">AM</span>
+        </section>
 
-              <img
-                id="previewPhoto"
-                alt="Profile Photo"
-              />
-            </div>
+      </form>
 
-            <div>
-              <h1 id="previewName">Avery Morgan</h1>
-              <h2 id="previewRole">Product Designer</h2>
+    </aside>
 
-              <div class="contact-grid">
-                <p id="previewEmail"></p>
-                <p id="previewPhone"></p>
-                <p id="previewLocation"></p>
-                <p id="previewWebsite"></p>
-              </div>
+    <!-- RIGHT SIDE PREVIEW -->
+    <main class="preview-panel">
+
+      <section
+        class="resume-preview classic"
+        id="resumePreview"
+      >
+
+        <!-- TOP SECTION -->
+        <div class="top-section">
+
+          <div class="avatar-frame">
+
+            <span id="avatarInitials">
+              AM
+            </span>
+
+            <img
+              id="previewPhoto"
+              alt="Profile Photo"
+            />
+
+          </div>
+
+          <div>
+
+            <h1 id="previewName">
+              Avery Morgan
+            </h1>
+
+            <h2 id="previewRole">
+              Product Designer
+            </h2>
+
+            <div class="contact-grid">
+
+              <p id="previewEmail"></p>
+
+              <p id="previewPhone"></p>
+
+              <p id="previewLocation"></p>
+
+              <p id="previewWebsite"></p>
+
             </div>
 
           </div>
 
-          <section class="resume-section">
-            <h3>Summary</h3>
-            <div id="previewSummary"></div>
-          </section>
+        </div>
 
-          <section class="resume-section">
-            <h3>Experience</h3>
-            <div id="previewExperience"></div>
-          </section>
+        <!-- SUMMARY -->
+        <section class="resume-section">
 
-          <section class="resume-section">
-            <h3>Education</h3>
-            <div id="previewEducation"></div>
-          </section>
+          <h3>Summary</h3>
 
-          <section class="resume-section">
-            <h3>Skills</h3>
-            <div id="previewSkills"></div>
-          </section>
+          <div id="previewSummary"></div>
 
         </section>
 
-      </main>
+        <!-- EXPERIENCE -->
+        <section class="resume-section">
 
-    </div>
+          <h3>Experience</h3>
 
-    <script src="script.js"></script>
-  </body>
+          <div id="previewExperience"></div>
+
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="resume-section">
+
+          <h3>Education</h3>
+
+          <div id="previewEducation"></div>
+
+        </section>
+
+        <!-- SKILLS -->
+        <section class="resume-section">
+
+          <h3>Skills</h3>
+
+          <div id="previewSkills"></div>
+
+        </section>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- JS FILE -->
+  <script src="script.js"></script>
+
+</body>
 </html>
