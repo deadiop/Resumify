@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
   background: var(--surface);
   color: var(--ink);
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 button,
@@ -27,6 +27,8 @@ input,
 textarea {
   font: inherit;
 }
+
+/* APP LAYOUT */
 
 .app-shell {
   display: grid;
@@ -37,58 +39,73 @@ textarea {
 /* LEFT PANEL */
 
 .editor-panel {
-  padding: 30px;
-  background: white;
-  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
   border-right: 1px solid var(--line);
+  overflow-y: auto;
+  padding: 28px;
 }
 
 .brand-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .eyebrow {
-  color: var(--accent);
+  margin: 0 0 6px;
+  color: var(--accent-strong);
+  font-size: 0.74rem;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-bottom: 8px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
 }
 
 h1 {
-  margin: 0;
+  margin-bottom: 0;
   font-size: 2rem;
+  line-height: 1.1;
+}
+
+.download-button,
+.template-option {
+  border: 0;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .download-button {
-  border: none;
   background: var(--accent);
   color: white;
   padding: 12px 18px;
   border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .download-button:hover {
   background: var(--accent-strong);
+  transform: translateY(-2px);
 }
+
+/* TEMPLATE BUTTONS */
 
 .template-switcher {
   display: flex;
-  gap: 10px;
-  margin: 25px 0;
+  gap: 12px;
+  margin: 26px 0;
 }
 
 .template-option {
-  border: none;
+  background: var(--panel);
   padding: 10px 16px;
   border-radius: 10px;
-  background: var(--panel);
-  cursor: pointer;
+  font-weight: 600;
 }
 
 .template-option.active {
@@ -96,21 +113,23 @@ h1 {
   color: white;
 }
 
+/* FORM */
+
 .form-grid {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
 }
 
 .field-group {
-  background: #fafafa;
+  background: white;
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 20px;
 }
 
 .field-group h2 {
-  margin-top: 0;
+  margin-bottom: 12px;
 }
 
 label {
@@ -124,10 +143,17 @@ label {
 input,
 textarea {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
   border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  outline: none;
   resize: vertical;
+  background: #fff;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
 }
 
 /* RIGHT PANEL */
@@ -139,6 +165,7 @@ textarea {
 }
 
 .resume-preview {
+  width: 100%;
   max-width: 850px;
   margin: auto;
   background: white;
@@ -147,11 +174,13 @@ textarea {
   box-shadow: var(--shadow);
 }
 
+/* TOP SECTION */
+
 .top-section {
   display: flex;
-  gap: 24px;
   align-items: center;
-  margin-bottom: 30px;
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
 .avatar-frame {
@@ -162,8 +191,8 @@ textarea {
   background: var(--accent);
   color: white;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-size: 2rem;
   font-weight: bold;
   flex-shrink: 0;
@@ -182,32 +211,40 @@ textarea {
 }
 
 #previewRole {
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--accent);
+  font-size: 1.2rem;
 }
+
+/* CONTACT GRID */
 
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  gap: 10px 20px;
+  gap: 10px 22px;
   margin-top: 16px;
   color: var(--muted);
 }
 
+/* RESUME SECTIONS */
+
 .resume-section {
-  margin-top: 32px;
+  margin-top: 34px;
 }
 
 .resume-section h3 {
-  margin-bottom: 12px;
   color: var(--accent);
+  margin-bottom: 12px;
   border-bottom: 2px solid var(--line);
   padding-bottom: 8px;
 }
 
 .resume-section p {
-  line-height: 1.6;
+  line-height: 1.7;
+  margin-bottom: 10px;
 }
+
+/* SKILLS */
 
 #previewSkills {
   display: flex;
@@ -230,14 +267,22 @@ textarea {
   color: white;
 }
 
+.resume-preview.modern #previewRole {
+  color: #7ef0d8;
+}
+
 .resume-preview.modern .resume-section h3 {
   color: #7ef0d8;
-  border-color: rgba(255,255,255,0.15);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .resume-preview.modern #previewSkills span {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: white;
+}
+
+.resume-preview.modern .contact-grid {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* COMPACT TEMPLATE */
@@ -251,12 +296,13 @@ textarea {
 }
 
 .resume-preview.compact .resume-section {
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
+
   .app-shell {
     grid-template-columns: 1fr;
   }
@@ -277,4 +323,5 @@ textarea {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+
 }
