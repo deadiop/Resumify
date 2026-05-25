@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Resume Builder</title>
 
-  <!-- CSS FILE -->
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -13,10 +15,11 @@
 
   <div class="app-shell">
 
-    <!-- LEFT SIDE EDITOR -->
+    <!-- LEFT PANEL -->
     <aside class="editor-panel">
 
       <div class="brand-row">
+
         <div>
           <p class="eyebrow">Instant Resume Builder</p>
           <h1>Craft a polished resume.</h1>
@@ -29,9 +32,10 @@
         >
           Download PDF
         </button>
+
       </div>
 
-      <!-- TEMPLATE SWITCHER -->
+      <!-- TEMPLATE SWITCH -->
       <section class="template-switcher">
 
         <button
@@ -191,7 +195,7 @@ Rhode Island School of Design, 2017</textarea>
 
     </aside>
 
-    <!-- RIGHT SIDE PREVIEW -->
+    <!-- RIGHT SIDE -->
     <main class="preview-panel">
 
       <section
@@ -199,7 +203,7 @@ Rhode Island School of Design, 2017</textarea>
         id="resumePreview"
       >
 
-        <!-- TOP SECTION -->
+        <!-- TOP -->
         <div class="top-section">
 
           <div class="avatar-frame">
@@ -228,11 +232,8 @@ Rhode Island School of Design, 2017</textarea>
             <div class="contact-grid">
 
               <p id="previewEmail"></p>
-
               <p id="previewPhone"></p>
-
               <p id="previewLocation"></p>
-
               <p id="previewWebsite"></p>
 
             </div>
@@ -283,7 +284,10 @@ Rhode Island School of Design, 2017</textarea>
 
   </div>
 
-  <!-- JS FILE -->
+  <!-- PDF LIBRARY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- JS -->
   <script src="script.js"></script>
 
 </body>
